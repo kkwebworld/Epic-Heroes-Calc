@@ -1,56 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Steller Chest Points Calculator by KkWarWorld</title>
+    <title>Steller Treasure Points Calculator by KkWarWorld</title>
     <link rel="icon" href="https://github.com/kkwebworld/Epic-Heroes-Calc/blob/36b4e16ae9de53b27ae882276d924c1772faee04/Kk.png?raw=true" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --background-color: #f0f8ff;
+            --text-color: #333333;
+            --input-background-color: #ffffff;
+            --input-border-color: #dddddd;
+            --button-background-color: #4CAF50;
+            --button-hover-color: #45a049;
+            --box-shadow: rgba(0, 0, 0, 0.2);
+        }
+        .dark-theme {
+            --background-color: #333333;
+            --text-color: #f0f8ff;
+            --input-background-color: #444444;
+            --input-border-color: #555555;
+            --button-background-color: #555555;
+            --button-hover-color: #666666;
+            --box-shadow: rgba(255, 255, 255, 0.2);
+        }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
+            background-color: var(--background-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
         }
         .container {
-            background-color: #ffffff;
-            padding: 20px 40px;
+            background-color: var(--input-background-color);
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px var(--box-shadow);
             text-align: center;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
         h2 {
-            color: #333333;
             margin-bottom: 20px;
+            font-size: 24px;
+			background-color: var(--button-hover-color);
+			background-color: var(--button-background-color);
+            color: white;
+            border: none;
+            padding: 15px 1px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
         }
         p {
-            color: #666666;
             margin-bottom: 20px;
+            font-size: 16px;
         }
+		q {
+            margin-bottom: 20px;
+            font-size: 14px;
+			text-align: right;
+		}	
         label {
             display: block;
             margin-top: 10px;
-            color: #333333;
             font-weight: bold;
+            font-size: 16px;
         }
         input[type="number"] {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
-            border: 1px solid #dddddd;
+            border: 1px solid var(--input-border-color);
             border-radius: 5px;
             box-sizing: border-box;
             outline: none;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 16px;
+            background-color: var(--input-background-color);
+            color: var(--text-color);
         }
         input[type="number"]:focus {
-            border-color: #4CAF50;
+            border-color: var(--button-background-color);
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
         button {
-            background-color: #4CAF50;
+            background-color: var(--button-background-color);
             color: white;
             border: none;
             padding: 15px 20px;
@@ -62,13 +108,50 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            width: 100%;
         }
-        button:hover {
-            background-color: #45a049;
+        button:hover:not(.theme-toggle-button) {
+            background-color: var(--button-hover-color);
+        }
+        .theme-toggle-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text-color);
+            transition: color 0.3s;
+            z-index: 1;
+            outline: none;
         }
         h3 {
-            color: #333333;
             margin: 10px 0;
+            font-size: 18px;
+        }
+
+        @media (min-width: 600px) {
+            h2 {
+                font-size: 28px;
+            }
+            p {
+                font-size: 18px;
+            }
+            label {
+                font-size: 18px;
+            }
+            input[type="number"] {
+                font-size: 18px;
+            }
+            button {
+                font-size: 18px;
+            }
+            h3 {
+                font-size: 20px;
+            }
         }
     </style>
     <script>
@@ -125,12 +208,20 @@
             document.getElementById('bonusGoldChests').innerText = "Bonus Gold Chests: " + bonusGoldChests;
             document.getElementById('bonusRubyChests').innerText = "Bonus Ruby Chests: " + bonusRubyChests;
         }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
     </script>
 </head>
 <body>
+    <button class="theme-toggle-button" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
     <div class="container">
-        <h2>Steller Chest Points Calculator</h2>
-        <p>by KkWarWorld</p>
+	<img src="https://github.com/kkwebworld/Epic-Heroes-Calc/blob/36b4e16ae9de53b27ae882276d924c1772faee04/Kk.png?raw=true" alt="Kk Icon" width="48" height="48">
+        <h2>Stellar Treasure Points Calculator<br>
+		<q>by KkWarWorld</q></h2>
         <p>Enter the number of chests accumulated:</p>
         <label for="sapphireChests">Sapphire Chests:</label>
         <input type="number" id="sapphireChests" name="sapphireChests"><br><br>
