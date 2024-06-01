@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Steller Chest Points Calculator by KkWarWorld</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666666;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333333;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h3 {
+            color: #333333;
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        function calculatePoints() {
+            var blueChests = parseInt(document.getElementById('blueChests').value) || 0;
+            var purpleChests = parseInt(document.getElementById('purpleChests').value) || 0;
+            var goldChests = parseInt(document.getElementById('goldChests').value) || 0;
+            var redChests = parseInt(document.getElementById('redChests').value) || 0;
+
+            var totalPoints = (blueChests * 2) + (purpleChests * 10) + (goldChests * 20) + (redChests * 50);
+            var initialPoints = totalPoints;
+
+            var bonusBlueChests = 0;
+            var bonusPurpleChests = 0;
+            var bonusGoldChests = 0;
+            var bonusRedChests = 0;
+
+            var milestones = [
+                { points: 40, bonus: 2, chest: 'blue' },
+                { points: 30, bonus: 10, chest: 'purple' },
+                { points: 30, bonus: 20, chest: 'gold' },
+                { points: 30, bonus: 50, chest: 'red' }
+            ];
+
+            var i = 0;
+            while (true) {
+                if (totalPoints >= milestones[i].points) {
+                    totalPoints -= milestones[i].points;
+                    if (milestones[i].chest === 'blue') {
+                        bonusBlueChests++;
+                    } else if (milestones[i].chest === 'purple') {
+                        bonusPurpleChests++;
+                    } else if (milestones[i].chest === 'gold') {
+                        bonusGoldChests++;
+                    } else if (milestones[i].chest === 'red') {
+                        bonusRedChests++;
+                    }
+                    totalPoints += milestones[i].bonus;
+                } else {
+                    break;
+                }
+                i = (i + 1) % milestones.length; // Cycle through the milestones
+            }
+
+            var finalPoints = initialPoints 
+                + (bonusBlueChests * 2) 
+                + (bonusPurpleChests * 10) 
+                + (bonusGoldChests * 20) 
+                + (bonusRedChests * 50);
+
+            document.getElementById('totalPoints').innerText = "Total Points: " + finalPoints;
+            document.getElementById('bonusBlueChests').innerText = "Bonus Blue Chests: " + bonusBlueChests;
+            document.getElementById('bonusPurpleChests').innerText = "Bonus Purple Chests: " + bonusPurpleChests;
+            document.getElementById('bonusGoldChests').innerText = "Bonus Gold Chests: " + bonusGoldChests;
+            document.getElementById('bonusRedChests').innerText = "Bonus Red Chests: " + bonusRedChests;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Steller Chest Points Calculator by KkWarWorld</h2>
+        <p>Enter the number of chests accumulated:</p>
+        <label for="blueChests">Blue Chests:</label>
+        <input type="number" id="blueChests" name="blueChests"><br><br>
+        <label for="purpleChests">Purple Chests:</label>
+        <input type="number" id="purpleChests" name="purpleChests"><br><br>
+        <label for="goldChests">Gold Chests:</label>
+        <input type="number" id="goldChests" name="goldChests"><br><br>
+        <label for="redChests">Red Chests:</label>
+        <input type="number" id="redChests" name="redChests"><br><br>
+        <button onclick="calculatePoints()">Calculate Points</button>
+        <h3 id="totalPoints">Total Points: 0</h3>
+        <h3 id="bonusBlueChests">Bonus Blue Chests: 0</h3>
+        <h3 id="bonusPurpleChests">Bonus Purple Chests: 0</h3>
+        <h3 id="bonusGoldChests">Bonus Gold Chests: 0</h3>
+        <h3 id="bonusRedChests">Bonus Red Chests: 0</h3>
+    </div>
+</body>
+</html>
