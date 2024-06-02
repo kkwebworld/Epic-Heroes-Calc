@@ -117,8 +117,8 @@
     position: fixed;
     bottom: 20px; /* Adjust as needed */
     right: 20px; /* Adjust as needed */
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     background-color: var(--button-background-color);
     border: none;
     border-radius: 50%;
@@ -135,12 +135,20 @@
 }
 
 .theme-toggle-button i {
-    margin-top: 12px;
+    margin-top: 0px;
+}
+.theme-toggle-button i.fa-sun {
+    display: none; /* Hide the sun icon by default */
 }
 
-.theme-toggle-button.expand {
-    transform: rotate(90deg);
+.theme-toggle-button.expand i.fa-moon {
+    display: none; /* Hide the moon icon when expanded */
 }
+
+.theme-toggle-button.expand i.fa-sun {
+    display: inline-block; /* Show the sun icon when expanded */
+}
+
         h3 {
             margin: 10px 0;
             font-size: 18px;
@@ -222,15 +230,17 @@
             document.getElementById('bonusRubyChests').innerText = "Bonus Ruby Chests: " + bonusRubyChests;
         }
 
-        function toggleTheme() {
+ function toggleTheme() {
     document.body.classList.toggle('dark-theme');
-    document.querySelector('.theme-toggle-button').classList.toggle('expand');
+    const button = document.querySelector('.theme-toggle-button');
+    button.classList.toggle('expand');
 }
     </script>
 </head>
 <body>
 	<button class="theme-toggle-button" onclick="toggleTheme()">
     <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i> <!-- Add sun icon here -->
 </button>
 
     <div class="container">
