@@ -1,4 +1,4 @@
-Steller Chest Points Calculator by KkWarWorld
+Stellar Treasure Points Calculator by KkWarWorld
 
 Epic Heroes - Competition of Money Eating
 
