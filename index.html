@@ -114,20 +114,33 @@
             background-color: var(--button-hover-color);
         }
         .theme-toggle-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 24px;
-            height: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 24px;
-            color: var(--text-color);
-            transition: color 0.3s;
-            z-index: 1;
-            outline: none;
-        }
+    position: fixed;
+    bottom: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    width: 48px;
+    height: 48px;
+    background-color: var(--button-background-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 9999;
+    outline: none;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.theme-toggle-button i {
+    margin-top: 12px;
+}
+
+.theme-toggle-button.expand {
+    transform: rotate(90deg);
+}
         h3 {
             margin: 10px 0;
             font-size: 18px;
@@ -210,14 +223,16 @@
         }
 
         function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-        }
+    document.body.classList.toggle('dark-theme');
+    document.querySelector('.theme-toggle-button').classList.toggle('expand');
+}
     </script>
 </head>
 <body>
-    <button class="theme-toggle-button" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-    </button>
+	<button class="theme-toggle-button" onclick="toggleTheme()">
+    <i class="fas fa-moon"></i>
+</button>
+
     <div class="container">
 	<img src="https://github.com/kkwebworld/Epic-Heroes-Calc/blob/36b4e16ae9de53b27ae882276d924c1772faee04/Kk.png?raw=true" alt="Kk Icon" width="48" height="48">
         <h2>Stellar Treasure Points Calculator<br>
